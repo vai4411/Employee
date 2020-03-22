@@ -45,3 +45,12 @@ case $ch in
 "4")exit;;
 "*")echo Invalid choice
 esac
+
+#Calculating Wage for Month
+monthwage=0
+monthwage(){
+day=20
+monthwage=$(($dailywage * $day))
+echo "Wage of month is $monthwage"
+}
+monthwage
