@@ -76,3 +76,7 @@ then
 else
 	echo $monthwage
 fi
+
+#Get the Working hours
+echo "Monthly Wage hours $h"
+echo "Part time wage hours $(($h / 2))"
