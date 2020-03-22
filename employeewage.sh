@@ -34,3 +34,14 @@ parttime=$(($Time * $wage))
 echo "Part time Employee Wage is $parttime"
 }
 parttimewage
+
+#Switch case
+echo -e "1.Attendance\n2.Daily Wage\n3.Part Time Wage\n4.Exit" 
+read ch
+case $ch in
+"1")attendance;;
+"2")dailywage;;
+"3")parttimewage;;
+"4")exit;;
+"*")echo Invalid choice
+esac
