@@ -94,3 +94,32 @@ do
         echo "daily wage ${arr[$i,0]} : monthly wage ${arr[$i,1]}"
 done
 
+#Store day and daily wage along with monthly wage
+j=1
+for ((i=1; i<=60; ))
+do
+	r=$((RANDOM%3))
+	if [ $r -eq 0 ]
+	then
+		arr1[$i]=$j
+		arr1[$(($i + 1))]=0
+		arr1[$(($i + 2))]=$monthwage
+	elif [ $r -eq 1 ]
+	then
+		arr1[$i]=$j
+		arr1[$(($i + 1))]=$dailywage
+		arr1[$(($i + 2))]=$monthwage
+	else
+		arr1[$i]=$j
+		arr1[$(($i + 1))]=$parttime
+		arr1[$(($i + 2))]=$monthwage
+	fi
+	i=$(($i + 3))
+	j=$(($j + 1))
+done
+
+for ((i=1; i<=60; ))
+do
+	echo "Day :${arr1[$i]} Wage :${arr1[$((i + 1))]} Total Wage :${arr1[$(($i + 2))]}"
+	i=$(($i + 3))
+done
