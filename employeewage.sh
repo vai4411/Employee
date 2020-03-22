@@ -12,3 +12,14 @@ else
 	echo "Absent"
 fi
 }
+attendance
+
+#Employee Wage
+dailywage=0
+dailywage(){
+wage=20
+hour=8
+dailywage=$(($wage * $hour))
+echo "Daily Employee Wage is $dailywage"
+}
+dailywage
