@@ -1,125 +1,125 @@
-#
+
 #!/bin/bash -x
 
 echo "Welcome Employee"
 
 #Employee attendance
-attendance(){
-a=$((RANDOM % 2))
-if [ $a -eq 1 ]
-then
-	echo "Present"
-else
-	echo "Absent"
-fi
+Attendance(){
+	ATTENDANCE=$((RANDOM % 2))
+	if [ $ATTENDANCE -eq 1 ]
+	then
+		echo "Present"
+	else
+		echo "Absent"	
+	fi
 }
-attendance
+Attendance
 
 #Employee Wage
-hour=8
-wage=20
-dailywage=0
-dailywage(){
-dailywage=$(($wage * $hour))
-echo "Daily Employee Wage is $dailywage"
+HOUR=8
+WAGE=20
+DAILY_WAGE=0
+Dailywage(){
+	DAILY_WAGE=$(($WAGE * $HOUR))
+	echo "Daily Employee Wage is $DAILYWAGE"
 }
-dailywage
+Dailywage
 
 #Employee part time wage
-parttime=0
-parttimewage(){
-Time=$(($hour / 2))
-parttime=$(($Time * $wage))
-echo "Part time Employee Wage is $parttime"
+PART_TIME=0
+Parttimewage(){
+	TIME=$(($HOUR / 2))
+	PART_TIME=$(($TIME * $WAGE))
+	echo "Part time Employee Wage is $PARTTIME"
 }
-parttimewage
+Parttimewage
 
 #Switch case
 echo -e "1.Attendance\n2.Daily Wage\n3.Part Time Wage\n4.Exit" 
-read ch
-case $ch in
-"1")attendance;;
-"2")dailywage;;
-"3")parttimewage;;
-"4")exit;;
-"*")echo Invalid choice
+read CHOICE
+case $CHOICE in
+	"1")Attendance;;
+	"2")Dailywage;;
+	"3")Parttimewage;;
+	"4")exit;;
+	"*")echo Invalid choice
 esac
 
 #Calculating Wage for Month
-monthwage=0
-monthwage(){
-day=20
-monthwage=$(($dailywage * $day))
-echo "Wage of month is $monthwage"
+MONTH_WAGE=0
+Monthwage(){
+	DAY=20
+	MONTH_WAGE=$(($DAILY_WAGE * $DAY))
+	echo "Wage of month is $MONTH_WAGE"
 }
-monthwage
+Monthwage
 
 #Calculate wage till 100 hours or 20 days for month
-h=0
-day=0
-wage=20
-total=0
-while [ $h -lt 100 ] && [ $day -lt 20 ]
+HOURS=0
+DAYS=0
+WAGES=20
+TOTAL=0
+while [ $HOURS -lt 100 ] && [ $HOURS -lt 20 ]
 do
-	r=$((RANDOM % 2))
-	if [ $r -eq 1 ]
+	FULL_DAY=$((RANDOM % 2))
+	if [ $FULL_DAY -eq 1 ]
 	then
-		h=$(($hour + $h))
-		total=$(($h * $wage))
+		HOURS=$(($HOUR + $HOURS))
+		TOTAL=$(($HOURS * $WAGES))
 	else
-		h=$(($(($hour / 2)) + $h))
-		total=$(($h * $wage))
+		HOURS=$(($(($HOUR / 2)) + $HOURS))
+		TOTAL=$(($HOURS * $WAGES))
 	fi
 done
-if [ $h -eq 100 ]
+if [ $HOURS -eq 100 ]
 then
-	echo $total
+	echo $TOTAL
 else
-	echo $monthwage
+	echo $MONTH_WAGE
 fi
 
 #Get the Working hours
-echo "Monthly Wage hours $h"
-echo "Part time wage hours $(($h / 2))"
+echo "Monthly Wage hours $HOURS"
+echo "Part time wage hours $(($HOURS / 2))"
 
 #Store daily wage along with monthly wage
-for ((i=1; i<=20; i++))
+for ((WAGE=1; WAGE<=20; WAGE++))
 do
-	arr[$i,0]=$dailywage
-	arr[$i,1]=$monthwage
+	ARR[$WAGE,0]=$DAILY_WAGE
+	ARR[$WAGE,1]=$MONTH_WAGE
 done
 
-for ((i=1; i<=20; i++))
+for ((WAGE=1; WAGE<=20; WAGE++))
 do
-        echo "daily wage ${arr[$i,0]} : monthly wage ${arr[$i,1]}"
+        echo "daily wage ${ARR[$WAGE,0]} : monthly wage ${ARR[$WAGE,1]}"
 done
 
 #Store day and daily wage along with monthly wage
-j=1
-for ((i=1; i<=60; ))
+NO_OF_DAY=1
+for ((DAY=1; DAY<=60; ))
 do
-	r=$((RANDOM%3))
-	if [ $r -eq 0 ]
+	DAILY_RECORD=$((RANDOM%3))
+	if [ $DAILY_RECORD -eq 0 ]
 	then
-		arr1[$i]=$j
-		arr1[$(($i + 1))]=0
-		arr1[$(($i + 2))]=$monthwage
-	elif [ $r -eq 1 ]
+		ARR1[$DAY]=$NO_OF_DAY
+		ARR1[$(($DAY + 1))]=0
+		ARR1[$(($DAY + 2))]=$MONTH_WAGE
+	elif [ $DAILY_RECORD -eq 1 ]
 	then
-		arr1[$i]=$j
-		arr1[$(($i + 1))]=$dailywage
-		arr1[$(($i + 2))]=$monthwage
+		ARR1[$DAY]=$NO_OF_DAY
+		ARR1[$(($DAY + 1))]=$DAILY_WAGE
+		ARR1[$(($DAY + 2))]=$MONTH_WAGE
 	else
-		arr1[$i]=$j
-		arr1[$(($i + 1))]=$parttime
-		arr1[$(($i + 2))]=$monthwage
+		ARR1[$DAY]=$NO_OF_DAY
+		ARR1[$(($DAY + 1))]=$PART_TIME
+		ARR1[$(($DAY + 2))]=$MONTH_WAGE
 	fi
-	i=$(($i + 3))
-	j=$(($j + 1))
+	DAY=$(($DAY + 3))
+	NO_OF_DAY=$(($NO_OF_DAY + 1))
 done
 
-for ((i=1; i<=60; ))
+for ((DAY=0 ; DAY<=60; ))
 do
-	echo "Day :${arr1[$i]} Wage :${arr1[$((i + 1))]} Total Wage :${arr1[$(($i + 2))]}"
-	i=$(($i + 3))
+	echo "Day :${ARR1[$DAY]} Wage :${ARR1[$((DAY + 1))]} Total Wage :${ARR1[$(($DAY + 2))]}"
+	DAY=$(($DAY + 3))
 done
